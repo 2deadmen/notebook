@@ -25,6 +25,8 @@ const Navbar = () => {
           <Link className={`nav-link  ${location.pathname==="/about"?"active":""}`} aria-current="page" to="/About">About</Link>
         </li>
       </ul>
+      <Link className="btn btn-primary mx-2" to="Login" role="button">Login</Link>
+      <Link className="btn btn-primary" to="/Signup" role="button">Signup</Link>
 
     </div>
   </div>

@@ -30,9 +30,10 @@ const Addnotes = () => {
         <input type="text" className="form-control"  name="description" onChange={change} id="inputPassword" placeholder=""/>
     </div>
     <div className="form-group">
-        <label className="form-check-label my-3"><input type="checkbox" onChange={change}/> tag </label>
+        <label htmlFor="inputPassword">tag</label>
+        <input type="text" className="form-control"  name="tag" onChange={change} id="tag" placeholder=""/>
     </div>
-    <button type="submit" className="btn btn-primary" onClick={handle}>Submit</button>
+    <button disabled={note.description.length<5 || note.title.length<3}type="submit" className="btn btn-primary" onClick={handle}>Submit</button>
 </form></div></>
   )
 }

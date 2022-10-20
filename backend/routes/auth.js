@@ -17,7 +17,7 @@ router.post('/signup',
     body('name','enter a valid name').isLength({ min: 3 }),
     body('email','enter a valid email').isEmail()] ,async (req,res)=>{
 
-
+        let success=false
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
           return res.status(422).json({ errors: errors.array() });
@@ -47,7 +47,8 @@ try{
 
           }
         const authToken=jwt.sign(data,jwt_secret)
-        res.json({authToken})
+        success=true
+        res.json({success,authToken})
              
         
         }catch(error){
@@ -59,7 +60,7 @@ try{
     router.post('/login',[
     body('password',"should be atleast 8 characters").isLength({ min: 8 }),
     body('email','enter a valid email').isEmail()] ,async (req,res)=>{
-
+      let success =false
       const errors = validationResult(req);
         if (!errors.isEmpty()) {
           return res.status(422).json({ errors: errors.array() });
@@ -85,8 +86,9 @@ try{
 
           }
         const authToken=jwt.sign(data,jwt_secret)
-        res.json({authToken})
-             
+        success = true  
+        res.json({success,authToken})
+         
         }catch(error){
           console.error(error)
           res.status(500).json({error:"internal server error"})
