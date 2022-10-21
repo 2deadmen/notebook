@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const Login = () => {
+const Login = (props) => {
   const [creds, setcreds] = useState({ email: "", password: "" });
   let navigate = useNavigate();
 
-  const [err, seterr] = useState(null);
   const onChange = (e) => {
     setcreds({ ...creds, [e.target.name]: e.target.value });
   };
@@ -21,8 +20,9 @@ const Login = () => {
     if (json.success) {
       localStorage.setItem("token", json.authToken);
       navigate("/");
+      props.showalert("logged in succesfully","success")
     } else {
-      seterr("wrong credentials");
+      props.showalert("wrong credentials","danger")
     }
   };
   return (
@@ -56,7 +56,6 @@ const Login = () => {
             placeholder="Password"
           />
         </div>
-        <p style={{ color: "red" }}>{err}</p>
 
         <button type="submit" className="btn btn-primary my-2">
           Submit
